@@ -28,4 +28,15 @@ export class MoviesComponent {
     });
   }
 
+  add(name: string, imageUrl: string, description: string): void {
+    this.movieService
+      .add(new Movie(name, description, imageUrl))
+      .subscribe((movie) => this.movies.push(movie));
+  }
+
+  delete(movie: Movie): void {
+    this.movies = this.movies.filter((m) => m !== movie);
+    this.movieService.delete(movie).subscribe();
+
+  }
 }
